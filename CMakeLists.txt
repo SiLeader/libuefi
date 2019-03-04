@@ -4,7 +4,8 @@ project(libuefi)
 set(CMAKE_CXX_STANDARD 17)
 include_directories(include)
 
-file(GLOB_RECURSE HEADERS *.hpp *.h)
-file(GLOB_RECURSE SOURCES *.cpp *.c)
+file(GLOB_RECURSE HEADERS include/uefi/*.hpp include/uefi/*.h)
+file(GLOB_RECURSE SOURCES src/*.cpp src/*.c)
 
-add_library(libuefi ${SOURCES} ${HEADERS})
+add_library(uefi ${SOURCES} ${HEADERS})
+add_subdirectory(test)

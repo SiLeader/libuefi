@@ -64,6 +64,48 @@ namespace uefi {
     using Event = void*;
     using Lba = uint64_t;
     using Tpl = uintn_t;
+    using Bool = uint8_t;
+    static constexpr Bool True = 1, False=0;
+
+    namespace table {
+        struct Header {
+            uint64_t signature;
+            uint32_t revision;
+            uint32_t headerSize;
+            uint32_t crc32;
+            uint32_t _reserved;
+        };
+    } /* table */
+
+    struct alignas(8) Guid {
+        uint32_t _0;
+        uint16_t _4, _6;
+        uint8_t _8, _9, _10, _11, _12, _13, _14, _15;
+
+        constexpr Guid(uint32_t __0, uint16_t __4, uint16_t __6, uint8_t __8, uint8_t __9, uint8_t __10, uint8_t __11, uint8_t __12, uint8_t __13, uint8_t __14, uint8_t __15) noexcept
+                : _0(__0)
+                , _4(__4)
+                , _6(__6)
+                , _8(__8)
+                , _9(__9)
+                , _10(__10)
+                , _11(__11)
+                , _12(__12)
+                , _13(__13)
+                , _14(__14)
+                , _15(__15) {
+        }
+        constexpr Guid() noexcept
+                : Guid(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0) {
+        }
+        Guid(const Guid&) = default;
+        Guid(Guid&&) = default;
+
+        Guid& operator=(const Guid&) = default;
+        Guid& operator=(Guid&&) = default;
+
+        ~Guid() = default;
+    };
 } /* uefi */
 
 #endif // INCLUDE_UEFI_TYPES_HPP

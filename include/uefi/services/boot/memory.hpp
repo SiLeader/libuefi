@@ -19,7 +19,7 @@
 #include <uefi/types.hpp>
 
 namespace uefi {
-    namespace service {
+    namespace services {
         namespace boot {
             namespace memory {
                 enum class AllocateType {
@@ -74,12 +74,12 @@ namespace uefi {
                     using AllocatePages = uefi::utils::Function<Status, AllocateType, MemoryType, uintn_t, PhysicalAddress*>;
                     using FreePages = uefi::utils::Function<Status, PhysicalAddress, uintn_t>;
                     using GetMemoryMap = uefi::utils::Function<Status, uintn_t*, MemoryDescriptor*, uintn_t*, uintn_t*, int32_t*>;
-                    using AllocatePool = uefi::utils::NotImplementedFunction;
-                    using FreePool = uefi::utils::NotImplementedFunction;
+                    using AllocatePool = uefi::utils::Function<Status, MemoryType, uintn_t, void**>;
+                    using FreePool = uefi::utils::Function<Status, void*>;
                 } /* functions */
             } /* memory */
         } /* boot */
-    } /* service */
+    } /* services */
 } /* uefi */
 
 #endif // INCLUDE_UEFI_SERVICES_BOOT_MEMORY_HPP
