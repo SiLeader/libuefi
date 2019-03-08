@@ -17,7 +17,7 @@
 
 namespace uefi {
     namespace utils {
-        template<class Ret, class... Args> using Function [[gnu::stdcall, clang::stdcall]] = Ret(*)(Args...);
+        template<class Ret, class... Args> using Function = Ret(__attribute__((stdcall))*)(Args...);
         using NotImplementedFunction = void*;
     } /* utils */
 } /* uefi */
